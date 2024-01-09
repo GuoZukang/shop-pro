@@ -32,7 +32,6 @@ export const http = <T = any>(options: UniApp.RequestOptions) => {
     uni.request({
       ...options,
       success: (res: UniApp.RequestSuccessCallbackResult) => {
-        console.log('aaaa:', res)
         // 请求成功，状态码是200的处理
         if (res.statusCode === 200) {
           if ((res.data as dataType<T>).code === 200) {

@@ -1,7 +1,7 @@
 import { useUserStore } from '@/stores/user'
 import type { dataType } from './types/responseDataType'
 // 接口的公共地址
-const baseURL = 'https://slwl-api.itheima.net'
+const baseURL = ''
 
 // 定义拦截器
 const httpInterceptor = {
@@ -45,7 +45,7 @@ export const http = <T = any>(options: UniApp.RequestOptions) => {
           const store = useUserStore()
           store.token = ''
 
-          // 跳转到登录也
+          // 跳转到登录页
           uni.navigateTo({ url: '/pages/login/login' })
 
           // 将错误返回出去

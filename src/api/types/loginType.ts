@@ -1,4 +1,4 @@
-export type loginParamsType = {
+export type loginType = {
   /**
    * 登录账号
    */

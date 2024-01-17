@@ -4,7 +4,7 @@ import { persist } from './index'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const token = ref('1234567')
+    const token = ref('')
     return {
       token,
     }

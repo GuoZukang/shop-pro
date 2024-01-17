@@ -1,7 +1,7 @@
 import { useUserStore } from '@/stores/user'
 import type { dataType } from './types/responseDataType'
 // 接口的公共地址
-const baseURL = ''
+const baseURL = 'https://pcapi-xiaotuxian-front-devtest.itheima.net'
 
 // 定义拦截器
 const httpInterceptor = {
@@ -33,20 +33,20 @@ export const http = <T = any>(options: UniApp.RequestOptions) => {
       ...options,
       success: (res: UniApp.RequestSuccessCallbackResult) => {
         // 请求成功，状态码是200的处理
-        if (res.statusCode === 200) {
-          if ((res.data as dataType<T>).code === 200) {
+        if (res.statusCode == 200) {
+          if ((res.data as dataType<T>).code == 1) {
             return resolve(res.data as dataType<T>)
           }
           _showToast(res.data as dataType<T>)
         }
 
         // token过期, 清空token, 重新跳转到登录页
-        if (res.statusCode === 401) {
+        if (res.statusCode == 401) {
           const store = useUserStore()
           store.token = ''
 
           // 跳转到登录页
-          uni.navigateTo({ url: '/pages/login/login' })
+          uni.navigateTo({ url: '/pages/login/index' })
 
           // 将错误返回出去
           return reject(res)
@@ -65,6 +65,6 @@ export const http = <T = any>(options: UniApp.RequestOptions) => {
 const _showToast = (res: dataType<any>) => {
   uni.showToast({
     icon: 'none',
-    title: res.data.msg || '请求错误',
+    title: res.msg || '请求错误',
   })
 }

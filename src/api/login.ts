@@ -3,7 +3,7 @@ import type { loginType } from './types/loginType'
 
 export const loginApi = (login: loginType) => {
   return http<string>({
-    url: '',
+    url: '/login',
     method: 'POST',
     data: login,
   })
